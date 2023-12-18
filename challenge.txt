@@ -1,0 +1,44 @@
+Description:
+You are tasked with building a web-based task management application. Users should be able to create, read, update, and delete tasks. Tasks should have a title, description, status (e.g., "In Progress," "Completed"), and a due date.
+
+Requirements:
+
+Backend (Laravel):
+
+Set up a Laravel project with appropriate migrations, models, controllers, and routes for tasks.
+Create an API for performing CRUD operations on tasks (Create, Read, Update, Delete).
+Implement validation for task fields (e.g., title is required, due date should be a future date).
+Implement sorting and filtering options for tasks (e.g., sort by due date, filter by status).
+Implement authentication using Laravel's built-in authentication system (or use a package like Passport) to ensure that only authenticated users can access the API endpoints.
+
+Frontend (Vue.js):
+
+Create a Vue.js application with components for displaying tasks.
+Implement a form for creating and updating tasks.
+Fetch tasks from the Laravel backend API and display them in a list.
+Allow users to edit task details inline and update tasks via API requests.
+Provide options to mark tasks as "Completed" or change their status.
+Implement sorting and filtering options for tasks on the frontend.
+Implement client-side routing using Vue Router to navigate between different views (e.g., task list view, task detail view).
+Add form validation on the frontend to ensure users enter valid data before submitting the form.
+
+Bonus:
+
+Implement user registration and login functionality using Laravel's authentication system.
+Add user-specific functionality, such as allowing users to see only their tasks and edit only their tasks.
+Implement drag-and-drop functionality to reorder tasks.
+Implement pagination for the task list.
+Submission:
+
+Host your Laravel backend on a server or use a service like Heroku.
+Host your Vue.js frontend on a server or use a service like Netlify or Vercel.
+Provide clear instructions for accessing the application, including any login credentials if authentication is implemented.
+
+Evaluation Criteria:
+
+Code quality and organization in both Laravel and Vue.js.
+Proper use of RESTful API design in Laravel.
+Validation and error handling on the frontend and backend.
+User interface design and user experience in Vue.js.
+Bonus points for implementing bonus features and thoughtful enhancements.
+This coding challenge will assess a candidate's ability to create a full-stack application using Laravel and Vue.js, covering both backend and frontend development, as well as basic CRUD operations, form handling, and API integration.
