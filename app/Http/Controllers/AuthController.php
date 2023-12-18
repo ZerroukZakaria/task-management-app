@@ -11,38 +11,48 @@ class AuthController extends Controller
 {
     public function register(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
+        try {
+            $request->validate([
+                'name' => 'required|string',
+                'email' => 'required|email|unique:users',
+                'password' => 'required|min:6|confirmed',
+            ]);
 
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'password' => Hash::make($request->input('password')),
-        ]);
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'password' => Hash::make($request->input('password')),
+            ]);
 
-        return response()->json(['user' => $user, 'message' => 'User registered successfully!'], 201);
+            return response()->json(['user' => $user, 'message' => 'User registered successfully!'], 201);
+            
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
+        }
     }
 
     public function login(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
+        try {
+            $request->validate([
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
 
-        $credentials = $request->only('email', 'password');
+            $credentials = $request->only('email', 'password');
 
-        if (Auth::attempt($credentials)) {
-            $user = Auth::user();
-            $token = $user->createToken('auth-token')->plainTextToken;
+            if (Auth::attempt($credentials)) {
+                $user = Auth::user();
+                $token = $user->createToken('auth-token')->plainTextToken;
 
-            return response()->json(['user' => $user, 'token' => $token]);
+                return response()->json(['user' => $user, 'token' => $token]);
+            }
+
+            return response()->json(['message' => 'Invalid credentials'], 401);
+            
+        } catch (ValidationException $e) {
+            return response()->json(['message' => $e->getMessage()], 400);
         }
-
-        return response()->json(['message' => 'Invalid credentials'], 401);
     }
 
     public function getUser(Request $request)

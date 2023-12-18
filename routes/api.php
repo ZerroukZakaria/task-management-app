@@ -32,12 +32,7 @@ Route::group(['prefix' => 'v1'], function() {
     });    
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
-    Route::get('/token', function () {
-        $user = App\Models\User::first(); // get the first user
-        $token = $user->createToken('test-token')->plainTextToken; // create a token for the user
-    
-        return $token; // return the token
-    });
+
 });
 
 
