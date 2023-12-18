@@ -25,7 +25,7 @@ class AuthController extends Controller
             ]);
 
             return response()->json(['user' => $user, 'message' => 'User registered successfully!'], 201);
-            
+        
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->getMessage()], 400);
         }
@@ -49,7 +49,7 @@ class AuthController extends Controller
             }
 
             return response()->json(['message' => 'Invalid credentials'], 401);
-            
+
         } catch (ValidationException $e) {
             return response()->json(['message' => $e->getMessage()], 400);
         }
